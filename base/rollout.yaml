@@ -4,7 +4,6 @@ metadata:
   labels:
     tags.datadoghq.com/service: discounts-service
     tags.datadoghq.com/env: "development"
-    tags.datadoghq.com/version: "1.0"
     app: ecommerce
   name: discounts
 spec:
@@ -13,7 +12,6 @@ spec:
     matchLabels:
       tags.datadoghq.com/service: discounts-service
       tags.datadoghq.com/env: "development"
-      tags.datadoghq.com/version: "1.0"
       app: ecommerce
   strategy:
     canary:
@@ -27,14 +25,14 @@ spec:
       labels:
         tags.datadoghq.com/service: discounts-service
         tags.datadoghq.com/env: "development"
-        tags.datadoghq.com/version: "1.0"
+        tags.datadoghq.com/version: VERSION
         app: ecommerce
       annotations:
         ad.datadoghq.com/discounts.logs: '[{"source": "python", "service": "discounts-service"}]'
         ad.datadoghq.com/discounts.tags: '{"team": "discounts"}'
     spec:
       containers:
-      - image: "shocnt/discounts-service-fixed:latest"
+      - image: IMAGE
         imagePullPolicy: IfNotPresent
         name: discounts
         command: ["ddtrace-run"]
@@ -77,4 +75,3 @@ spec:
                 fieldPath: metadata.labels['tags.datadoghq.com/version']        
         ports:
         - containerPort: 5001
-        resources: {}
