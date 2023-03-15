@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  labels:
+    tags.datadoghq.com/env: prod
+  name: discounts
+spec:
+  selector:
+    matchLabels:
+      tags.datadoghq.com/env: prod
+  template:
+    metadata:
+      labels:
+        tags.datadoghq.com/env: prod
+        tags.datadoghq.com/version: "1.0"
+    spec:
+      containers:
+      - image: shocnt/discounts-service-fixed:latest
+        name: discounts
+
+
