@@ -28,7 +28,6 @@ spec:
         app: ecommerce
       annotations:
         ad.datadoghq.com/discounts.logs: '[{"source": "python", "service": "discounts-service"}]'
-        ad.datadoghq.com/discounts.tags: '{"team": "discounts"}'
     spec:
       containers:
       - image: IMAGE
